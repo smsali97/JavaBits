@@ -1,2 +1,1 @@
-# JavaBits
-Generics, I/O, Executor Framework
+# Java Generics Tutorial

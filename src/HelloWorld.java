@@ -1,29 +1,34 @@
-import generics.printing.ContinuousPrinter;
+import java.util.List;
 
-import java.lang.reflect.InvocationTargetException;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
+import generics.printing.BWCartridge;
+import generics.printing.ColorCartridge;
+import generics.printing.ICartridge;
+import generics.printing.Printer;
 
 public class HelloWorld {
 
-	public static void main(String[] args) throws NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException
+	public static void main(String[] args) 
 	{
-		ContinuousPrinter cp = new ContinuousPrinter();
+		Printer<BWCartridge> printer = new Printer<>(true, "Model 1",new BWCartridge());		
+		
+		getPrinterCartridge(printer);
+		
+//		printer.print(1);
+//		
+//		Printer.printCartidgeOf(new ColorCartridge());
+//		
+//		
+//		List<ICartridge> list;
+//		List<BWCartridge> list2;
+//		
+//		list = list2;
+//		
+//		
+	}	
 
-		ExecutorService executor = Executors.newFixedThreadPool(100);
-		executor.submit(cp);
-		executor.submit(cp);
-		executor.submit(cp);
-		executor.submit(cp);
-		executor.submit(cp);
-		executor.submit(cp);
-		executor.shutdown();
-		
-		for(int i = 0; i < 100; i++)
-			System.out.println("Main thread " + i);
-		
+	public static void getPrinterCartridge(Printer<? extends ICartridge> printer) {
+		System.out.println(printer.getCartridge().getFillPercentage());
 	}
-	
 	
 }
 
